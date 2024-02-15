@@ -4,7 +4,7 @@
 
 Ported to GitHub from the Hackage page of Gwern Branwen in 2008.
 
-![Example proof produced by PESCA](pesca-proof-example.png)
+![Example proof produced by PESCA](doc/pesca-proof-example.png)
 
 PESCA is a companion to the book Structural Proof Theory by Sara Negri and Jan von Plato,
 Cambridge University Press, 2001.
