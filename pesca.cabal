@@ -1,0 +1,34 @@
+name:                pesca
+version:             4.0.2
+synopsis:            Proof Editor for Sequent Calculus
+description:         Pesca is a program that helps in the construction of proofs
+                     in sequent calculus. It works both as a proof editor and as an automatic theorem
+                     prover. Proofs constructed in Pesca can both be seen on the terminal and printed
+                     into LaTeX files.
+                     .
+                     The user of Pesca can choose among different versions of classical and
+                     intuitionistic proposition and predicate calculi, and extend them by systems of
+                     nonlogical axioms. The implementation of Pesca is written in the
+                     functional programming language Haskell.
+
+category:            Theorem Provers, Compilers/Interpreters
+license:             GPL
+license-file:        LICENSE
+author:              Aarne Ranta
+maintainer:          Aarne Ranta <http://www.cse.chalmers.se/~aarne/>
+homepage:            http://www.cse.chalmers.se/~aarne/pesca/
+
+cabal-version:	     >=1.0
+
+build-depends:       base>=4.4 && <5, process
+build-type:          Simple
+data-files:          README, doc/geometry, doc/lattices, doc/manual.tex, doc/proof.sty
+tested-with:         GHC==8.0.2, GHC==7.10.3
+
+executable:          pesca
+main-is:             Editor.hs
+hs-source-dirs:      src
+other-modules:       Axioms, Calculi, Interaction, Natural, PrelSequent, PSequent, PrSequent, Sequent
+
+--c-options:         -Wall
+ghc-prof-options:    -auto-all
