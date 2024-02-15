@@ -16,11 +16,19 @@ runghc Editor.hs
 ```
 (also a compiled version can be built by using Cabal).
 
+To do this, you need the
+[Haskell Compiler GHC](https://www.haskell.org/ghc/).
+
+Some commands need `pdflatex` and a way to open PDF files.
+The latter is by default `open`, which works in MacOS.
+This default can be changed by changing the value of `openPDF` in `Editor.hs`.
+
+
 To the PESCA prompt |-, type
 ```
   ?
 ```
 
-For a tutorial and manual, see
-
+More information in the [PESCA manual](doc/manual.pdf) - and of course
+in the *Structural Proof Theory* book.
 

@@ -8,10 +8,14 @@ import PrSequent
 import Calculi
 import Axioms
 import Natural
-import System.Cmd (system)
+import System.Process (system)
 import System.IO.Error (catchIOError,isEOFError)
 
 -- sequent calculus proof editor. Aarne Ranta 8/4/1999 -- 26/4 -- 14/11/2000
+-- 15/2/2024
+
+-- command to open PDF files; "open" works in MacOS
+openPDF = "open"  
 
 main :: IO ()
 main = do putStr welcomeMsg
@@ -62,15 +66,16 @@ editProofs envh@(env@(calculus,tree),history) =
                                     (foldr (++++) "" (history ++ ["q"]))
                           putStr "history written in myhistory.txt\n"
                           return (tree',"")
-      CManual       -> do system "latex manual.tex >& /dev/null ; xdvi manual.dvi &"
-                          editProofs envh'
+---      CManual       -> do system "latex manual.tex >& /dev/null ; xdvi manual.dvi &"
+---                          editProofs envh'
       _             -> editProofs envh')
 
 -----------------------
 
 writeAndLatexFile file content = do
   writeFile (file ++ ".tex") content
-  system ("latex" +++ file ++ ".tex >& /dev/null ; xdvi" +++ file ++ ".dvi &")
+----  system ("pdflatex" +++ file ++ ".tex >& /dev/null ;" +++ openPDF +++ file ++ ".pdf &")
+  putStrLn $ "wrote " ++ file ++ ".tex"
   return ()
 
 type Env = (AbsCalculus, Proof)
@@ -143,7 +148,7 @@ helpMessage =
  "  h [file]                     -  print history to file," ++++
  "                                  which is by default myhistory.txt" ++++
  "  ?                            -  print this help message" ++++
- "  m                            -  show the PESCA manual" ++++
+----  "  m                            -  show the PESCA manual" ++++
  "  q                            -  write history in myhistory.txt and quit\n"
 
 ----------------------
@@ -180,8 +185,8 @@ pCommand calculus =
   jL "h" +.. (pRuleIdent ||| succeed "myhistory.txt") *** CHistory
  |||
   jL "?"                 <<< CHelp
- |||
-  jL "m"                 <<< CManual
+ --- |||
+ ---  jL "m"                 <<< CManual
  |||
   jL "q"                 <<< CQuit
 
